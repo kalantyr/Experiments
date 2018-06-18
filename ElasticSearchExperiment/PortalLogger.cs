@@ -1,5 +1,6 @@
 ﻿using System;
 using Serilog;
+using Serilog.Events;
 
 namespace ElasticSearchExperiment
 {
@@ -14,31 +15,53 @@ namespace ElasticSearchExperiment
 
         public void Info(string message, LogMetadata metadata)
         {
-            CheckMetadata(metadata);
-
             if (string.IsNullOrWhiteSpace(message))
                 throw new ArgumentNullException(nameof(message));
 
-            _logger.Information($"{message} {{ActionId}} {{UserId}}", metadata.ActionId, metadata.UserId);
+            _logger
+                .AddMetadata(metadata, LogEventLevel.Information)
+                .Information(message);
         }
 
         public void Error(string errorMessage, LogMetadata metadata)
         {
-            CheckMetadata(metadata);
-
             if (string.IsNullOrWhiteSpace(errorMessage))
                 throw new ArgumentNullException(nameof(errorMessage));
 
-            _logger.Error($"{errorMessage} {{ActionId}} {{UserId}}", metadata.ActionId, metadata.UserId);
+            _logger
+                .AddMetadata(metadata, LogEventLevel.Error)
+                .Error(errorMessage);
         }
 
-        private void CheckMetadata(LogMetadata metadata)
+        public void Error(Exception error, LogMetadata metadata)
+        {
+            if (error == null)
+                throw new ArgumentNullException(nameof(error));
+
+            _logger
+                .AddMetadata(metadata, LogEventLevel.Error)
+                .Error(error, error.Message);
+        }
+    }
+
+    internal static class PortalLoggerExtensions
+    {
+        public static ILogger AddMetadata(this ILogger logger, LogMetadata metadata, LogEventLevel level)
         {
             if (metadata == null)
                 throw new ArgumentNullException(nameof(metadata));
 
             if (metadata.ActionId == Guid.Empty)
                 throw new ArgumentNullException(nameof(metadata.ActionId));
+
+            var result = logger
+                .ForContext(level, nameof(Environment.MachineName), Environment.MachineName)
+                .ForContext(level, nameof(metadata.ActionId), metadata.ActionId);
+
+            if (!string.IsNullOrWhiteSpace(metadata.UserId))
+                result = result.ForContext(level, nameof(metadata.UserId), metadata.UserId);
+
+            return result;
         }
     }
 
@@ -46,6 +69,6 @@ namespace ElasticSearchExperiment
     {
         public Guid ActionId { get; set; }
 
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -7,6 +7,8 @@ namespace ElasticSearchExperiment
 {
     class Program
     {
+        private static readonly Random _random = new Random();
+
         static void Main()
         {
             var sinkOptions = new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
@@ -15,31 +17,33 @@ namespace ElasticSearchExperiment
                 AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv6
             };
             var loggerConfig = new LoggerConfiguration()
-                .Enrich
-                    .With<PortalLogEventEnricher>()
                 .WriteTo
                 .Elasticsearch(sinkOptions);
 
-            Log.Logger = loggerConfig.CreateLogger();
+            var logger = new PortalLogger(loggerConfig.CreateLogger());
 
-            var logger = new PortalLogger(Log.Logger);
-
-            for (var i = 0; i < 100; i++)
+            for (var i = 0; i < 10000; i++)
             {
                 var logMetadata = new LogMetadata
                 {
                     ActionId = Guid.NewGuid(),
-                    UserId = 123
+                    UserId = _random.Next(111, 123).ToString()
                 };
 
-                logger.Info($"Test {i}", logMetadata);
-
-                if (i % 3 == 0)
-                    logger.Error($"Hello, Serilog {i} !", logMetadata);
+                if (i % 10 == 0)
+                    try
+                    {
+                        var q = i / 0;
+                        q.Equals(null);
+                    }
+                    catch (Exception ex)
+                    {
+                        logger.Error(ex, logMetadata);
+                    }
                 else
                     logger.Info($"Hello, Serilog {i} !", logMetadata);
 
-                Thread.Sleep(TimeSpan.FromSeconds(0.1));
+                Thread.Sleep(TimeSpan.FromSeconds(_random.NextDouble()));
             }
 
             Log.CloseAndFlush();

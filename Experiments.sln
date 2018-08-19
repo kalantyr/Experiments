@@ -5,6 +5,12 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchExperiment", "ElasticSearchExperiment\ElasticSearchExperiment.csproj", "{D72354B1-CAAC-4E4B-8AE4-40ACD52FD30F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Queue", "Queue", "{776B2DD3-D882-41F1-8A8B-8E1BDE8ECD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueSender", "Queue\QueueSender\QueueSender.csproj", "{B2DBBA90-E420-46ED-99AC-0EED50E506F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueReceiver", "Queue\QueueReceiver\QueueReceiver.csproj", "{6301B666-A34C-410E-81CD-6DDF9595DAAD}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Speed", "Speed\Speed.csproj", "{AEF5E1C3-F593-44CD-8CE9-1DB4E28E7A93}"
 EndProject
 Global
@@ -17,6 +23,14 @@ Global
 		{D72354B1-CAAC-4E4B-8AE4-40ACD52FD30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D72354B1-CAAC-4E4B-8AE4-40ACD52FD30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D72354B1-CAAC-4E4B-8AE4-40ACD52FD30F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2DBBA90-E420-46ED-99AC-0EED50E506F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2DBBA90-E420-46ED-99AC-0EED50E506F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2DBBA90-E420-46ED-99AC-0EED50E506F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2DBBA90-E420-46ED-99AC-0EED50E506F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6301B666-A34C-410E-81CD-6DDF9595DAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6301B666-A34C-410E-81CD-6DDF9595DAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6301B666-A34C-410E-81CD-6DDF9595DAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6301B666-A34C-410E-81CD-6DDF9595DAAD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AEF5E1C3-F593-44CD-8CE9-1DB4E28E7A93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AEF5E1C3-F593-44CD-8CE9-1DB4E28E7A93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AEF5E1C3-F593-44CD-8CE9-1DB4E28E7A93}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,6 +38,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B2DBBA90-E420-46ED-99AC-0EED50E506F5} = {776B2DD3-D882-41F1-8A8B-8E1BDE8ECD71}
+		{6301B666-A34C-410E-81CD-6DDF9595DAAD} = {776B2DD3-D882-41F1-8A8B-8E1BDE8ECD71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0D9F6037-1EDF-4105-B25E-E1BB3476614F}

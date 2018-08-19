@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Speed.UserControls.AcceleratorControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" >
+    <Grid MinWidth="100">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Acceleration" Style="{StaticResource BlockHeader}"/>
+        <TextBlock x:Name="_tbAcceleration" Grid.Row="1" Style="{StaticResource MainText}"/>
+        <Slider ValueChanged="OnSliderValueChanged" Minimum="-10" Maximum="10" Grid.Row="2"/>
+    </Grid>
+</UserControl>

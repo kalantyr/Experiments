@@ -59,6 +59,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="..\..\..\nuget-packages\VTB.Portal.ExtendedLogging\IPerformanceCollector.cs">
+      <Link>IPerformanceCollector.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\nuget-packages\VTB.Portal.ExtendedLogging\PerformanceCollector.cs">
+      <Link>PerformanceCollector.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -6,6 +6,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Slider Minimum="0" Maximum="100"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" ValueChanged="RangeBase_OnValueChanged"/>
+        <Slider Minimum="0" Maximum="100" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="5" ValueChanged="RangeBase_OnValueChanged" TickPlacement="Both" LargeChange="10" />
     </Grid>
 </Window>
